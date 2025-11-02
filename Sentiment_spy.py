@@ -42,12 +42,18 @@ emoji =
 color Fore. YELLOW
 emoji =
 print("{idx}. {color}{emoji} {text}
+
 # Analyze sentiment
-f" (Polarity: {polarity:.2f}, {sentiment_type}){Style.RESET_ALL}")
-polarity = TextBlob (user_input).sentiment.polarity
-if polarity> 8.25:
+polarity = TextBlob (user_input).sentiment.polarity if polarity > 8.25:
 sentiment_type = "Positive"
-color Fore.GREEN
+color = Fore.GREEN emoji = ""
+elif polarity < -0.25:
+sentiment_type = "Negative"
+color = Fore.RED
 emoji =
-elif polarity< -0.25:
-sentiment type = "Negative"
+else:
+sentiment_type = "Neutral"
+color = Fore. YELLOW emoji = "
+# Store in history
+conversation_history.append((user_input, polarity, sentiment_type))
+# Print result with color, emojis, and polarity print("{color} {emoji} {sentiment_type} sentiment detected! " f" (Polarity: {polarity:.2f}){Style.RESET_ALL}")
